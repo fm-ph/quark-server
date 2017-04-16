@@ -1,8 +1,8 @@
 # quark-server
 
 [![build status][travis-image]][travis-url]
-[![packagist version][packagist-image]][packagist-url]
 [![stability][stability-image]][stability-url]
+[![packagist version][packagist-image]][packagist-url]
 [![composer.lock][composer-lock-image]][packagist-url]
 [![semantic-release][semantic-release-image]][semantic-release-url]
 
@@ -138,10 +138,10 @@ MIT [License](LICENSE.md) © [Patrick Heng](http://hengpatrick.fr/) [Fabien Mott
 
 [travis-image]: https://img.shields.io/travis/fm-ph/quark-server/master.svg?style=flat-square
 [travis-url]: http://travis-ci.org/fm-ph/quark-server
-[packagist-image]: https://img.shields.io/packagist/v/fm_ph/quark.svg?style=flat-square
-[packagist-url]: https://packagist.org/packages/fm_ph/quark
 [stability-image]: https://img.shields.io/badge/stability-stable-brightgreen.svg?style=flat-square
 [stability-url]: https://nodejs.org/api/documentation.html#documentation_stability_index
+[packagist-image]: https://img.shields.io/packagist/v/fm_ph/quark.svg?style=flat-square
+[packagist-url]: https://packagist.org/packages/fm_ph/quark
 [composer-lock-image]: https://img.shields.io/badge/.lock-commited-e10079.svg?style=flat-square
 [semantic-release-image]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square
 [semantic-release-url]: https://github.com/semantic-release/semantic-release
