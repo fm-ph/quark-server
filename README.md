@@ -1,8 +1,8 @@
 # quark-server
 
 [![build status][travis-image]][travis-url]
-[![stability][stability-image]][stability-url]
 [![packagist version][packagist-image]][packagist-url]
+[![php-version][php-version-image]][php-version-url]
 [![composer.lock][composer-lock-image]][packagist-url]
 [![semantic-release][semantic-release-image]][semantic-release-url]
 
@@ -23,10 +23,10 @@ Server part of `quark` framework handling mainly the __routing__ and __templatin
 Get [Composer](https://getcomposer.org/download/) and run :
 
 ```sh
-composer install
+composer require fm_ph/quark
 ```
 
-___Note___ : You need at least __PHP 7.x__ (CLI) installed on your machine (verify it with `php -v`).
+___Note___ : You need at least __PHP 7.x__ (CLI) installed on your machine to use this package (verify it with `php -v`).
 
 For __OS X__ users, you can easily update it on [https://php-osx.liip.ch/](https://php-osx.liip.ch/).
 
@@ -138,10 +138,10 @@ MIT [License](LICENSE.md) © [Patrick Heng](http://hengpatrick.fr/) [Fabien Mott
 
 [travis-image]: https://img.shields.io/travis/fm-ph/quark-server/master.svg?style=flat-square
 [travis-url]: http://travis-ci.org/fm-ph/quark-server
-[stability-image]: https://img.shields.io/badge/stability-stable-brightgreen.svg?style=flat-square
-[stability-url]: https://nodejs.org/api/documentation.html#documentation_stability_index
 [packagist-image]: https://img.shields.io/packagist/v/fm_ph/quark.svg?style=flat-square
 [packagist-url]: https://packagist.org/packages/fm_ph/quark
+[php-version-image]: https://img.shields.io/badge/php-%3E%3D%207.0-8892BF.svg?style=flat-square
+[php-version-url]: https://php.net
 [composer-lock-image]: https://img.shields.io/badge/.lock-commited-e10079.svg?style=flat-square
 [semantic-release-image]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square
 [semantic-release-url]: https://github.com/semantic-release/semantic-release
