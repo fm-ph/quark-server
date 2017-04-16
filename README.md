@@ -138,7 +138,7 @@ MIT [License](LICENSE.md) © [Patrick Heng](http://hengpatrick.fr/) [Fabien Mott
 
 [travis-image]: https://img.shields.io/travis/fm-ph/quark-server/master.svg?style=flat-square
 [travis-url]: http://travis-ci.org/fm-ph/quark-server
-[packagist-image]: https://img.shields.io/packagist/v/symfony/symfony.svg?style=flat-square
+[packagist-image]: https://img.shields.io/packagist/v/fm_ph/quark.svg?style=flat-square
 [packagist-url]: https://packagist.org/packages/fm_ph/quark
 [stability-image]: https://img.shields.io/badge/stability-stable-brightgreen.svg?style=flat-square
 [stability-url]: https://nodejs.org/api/documentation.html#documentation_stability_index
