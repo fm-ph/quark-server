@@ -17,7 +17,7 @@
     "docs": "npm run docs:clean && phpdoc -n -q",
     "docs:clean": "rimraf docs",
     "docs:deploy": "npm run docs && gh-pages -d docs -m 'docs: update'",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "semantic-release": "semantic-release pre && semantic-release post"
   },
   "repository": {
     "type": "git",

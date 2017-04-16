@@ -2,10 +2,19 @@ language: php
 php:
   - '7.0'
   - '7.1'
-before_script:
-  - composer install --no-interaction
+notifications:
+  email: false
+cache:
+  directories:
+    - node_modules
+before_install:
+  - npm prune
+  - composer clear-cache
+install:
+  - npm install
+  - composer install --no-interaction --no-ansi --no-progress --no-suggest
   - composer global require phpunit/phpunit
 script:
   - phpunit
-notifications:
-  email: false
+after_success:
+  - npm run semantic-release
