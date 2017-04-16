@@ -1,0 +1,43 @@
+# MacOS
+*.DS_Store
+.AppleDouble
+.LSOverride
+
+# JetBrains
+.idea
+
+# Twig
+cache
+
+# VSCode
+.history
+.vscode
+
+# Node
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+node_modules
+
+# Composer
+vendor
+
+# dotenv environment variables file
+.env
+
+# PHPDoc
+docs
+
+# nyc test coverage
+.nyc_output
+
+# Coverage (istanbul)
+coverage
+
+# Stylus
+*.css.map
+
+# Rollup
+*.js.map

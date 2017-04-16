@@ -1,0 +1,46 @@
+{
+  "name": "fm_ph/quark",
+  "description": "Quark server",
+  "type": "library",
+  "homepage": "https://github.com/fm-ph/quark-server",
+  "license": "MIT",
+  "keywords": [
+    "quark",
+    "server"
+  ],
+  "authors": [
+    {
+      "name": "Patrick Heng",
+      "email": "hengpatrick.pro@gmail.com"
+    },
+    {
+      "name": "Fabien Motte",
+      "email": "contact@fabienmotte.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Quark\\": "src/"
+    },
+    "files": [
+      "src/helpers.php"
+    ]
+  },
+  "require": {
+    "php": "^7.0",
+    "fig/http-message-util": "^1.1",
+    "filp/whoops": "^2.1",
+    "gpolguere/path-to-regexp-php": "dev-master",
+    "hassankhan/config": "^0.10.0",
+    "jenssegers/agent": "^2.5",
+    "nochso/html-compress-twig": "^2.0",
+    "php-http/guzzle6-adapter": "^1.1",
+    "php-http/message": "^1.5",
+    "symfony/yaml": "^3.2",
+    "twig/twig": "^2.1",
+    "willdurand/geocoder": "4.0.x-dev"
+  },
+  "config": {
+    "sort-packages": true
+  }
+}

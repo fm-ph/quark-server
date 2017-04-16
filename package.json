@@ -1,0 +1,35 @@
+{
+  "name": "quark-server",
+  "version": "0.0.0-development",
+  "description": "Quark server",
+  "main": "index.js",
+  "keywords": [
+    "quark",
+    "server"
+  ],
+  "license": "MIT",
+  "author": "fm_ph",
+  "contributors": [
+    "Patrick Heng <hengpatrick.pro@gmail.com> (http://hengpatrick.fr/)",
+    "Fabien Motte <contact@fabienmotte.com> (http://fabienmotte.com/)"
+  ],
+  "scripts": {
+    "docs": "npm run docs:clean && phpdoc -n -q",
+    "docs:clean": "rimraf docs",
+    "docs:deploy": "npm run docs && gh-pages -d docs -m 'docs: update'",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fm-ph/quark-server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fm-ph/quark-server/issues"
+  },
+  "homepage": "https://github.com/fm-ph/quark-server",
+  "devDependencies": {
+    "gh-pages": "^0.12.0",
+    "rimraf": "^2.6.1",
+    "semantic-release": "^6.3.2"
+  }
+}
