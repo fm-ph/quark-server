@@ -2,7 +2,6 @@
   "name": "quark-server",
   "version": "0.0.0-development",
   "description": "Quark server",
-  "main": "index.js",
   "keywords": [
     "quark",
     "server"
@@ -16,8 +15,7 @@
   "scripts": {
     "docs": "npm run docs:clean && phpdoc -n -q",
     "docs:clean": "rimraf docs",
-    "docs:deploy": "npm run docs && gh-pages -d docs -m 'docs: update'",
-    "semantic-release": "semantic-release pre && semantic-release post"
+    "docs:deploy": "npm run docs && gh-pages -d docs -m 'docs: update'"
   },
   "repository": {
     "type": "git",
@@ -29,7 +27,6 @@
   "homepage": "https://github.com/fm-ph/quark-server",
   "devDependencies": {
     "gh-pages": "^0.12.0",
-    "rimraf": "^2.6.1",
-    "semantic-release": "^6.3.2"
+    "rimraf": "^2.6.1"
   }
 }

@@ -4,7 +4,6 @@
 [![packagist version][packagist-image]][packagist-url]
 [![php-version][php-version-image]][php-version-url]
 [![composer.lock][composer-lock-image]][packagist-url]
-[![semantic-release][semantic-release-image]][semantic-release-url]
 
 Server part of `quark` framework handling mainly the __routing__ and __templating__. 
 
@@ -143,5 +142,3 @@ MIT [License](LICENSE.md) © [Patrick Heng](http://hengpatrick.fr/) [Fabien Mott
 [php-version-image]: https://img.shields.io/badge/php-%3E%3D%207.0-8892BF.svg?style=flat-square
 [php-version-url]: https://php.net
 [composer-lock-image]: https://img.shields.io/badge/.lock-commited-e10079.svg?style=flat-square
-[semantic-release-image]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square
-[semantic-release-url]: https://github.com/semantic-release/semantic-release
