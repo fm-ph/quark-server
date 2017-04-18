@@ -230,11 +230,11 @@ class Application
         'name' => $currentRoute->getName(),
         'parameters' => $currentRoute->getParameters()
       ],
+      'l10n' => $this->l10n,
       'locale' => [
         'code' => $this->locale,
         'available' => (array) Locale::getAvailableLocales(),
-        'country' => $this->geocoder instanceof Geocoder ? $this->geocoder->getCountry() : config('locale.country'),
-        'l10n' => $this->l10n
+        'country' => $this->geocoder instanceof Geocoder ? $this->geocoder->getCountry() : config('locale.country')
       ],
       'browser' => $this->userAgent->getBrowser(),
       'operatingSystem' => $this->userAgent->getOperatingSystem(),
