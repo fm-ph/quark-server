@@ -216,3 +216,19 @@ if (!function_exists('get_all_headers'))  {
     return $headers;
   }
 }
+
+if (!function_exists('starts_with'))  {
+  /**
+   * Starts with.
+   *
+   * @param string $haystack Haystack.
+   * @param string $needle Needle.
+   * 
+   * @return bool True if it starts with, false otherwise.
+   */
+  function starts_with($haystack, $needle)
+  {
+    $length = strlen($needle);
+    return (substr($haystack, 0, $length) === $needle);
+  }
+}

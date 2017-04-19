@@ -280,6 +280,12 @@ class Application
           $element->removeAttribute('data-component');
           $element->setAttribute('data-prerendered', $componentName);
 
+          foreach ($node->attributes as $attrName => $attrNode) {
+            if($attrName !== 'data-component' && starts_with($attrName, 'data-')) {
+              $element->setAttribute($attrName, $attrNode->nodeValue);
+            }
+          }
+
           $node->parentNode->replaceChild($element, $node);
         }
       }
