@@ -218,6 +218,8 @@ class Application
 
   /**
    * Render.
+   *
+   * @return string Rendered HTML.
    */
   public function render()
   {
@@ -243,7 +245,54 @@ class Application
     ];
 
     $data = array_merge_deep($data, config('twig.extraData'));
-    return $this->twig->render('@layouts/'. config('twig.layout') . config('twig.extension'), $data);
+    $html = $this->twig->render('@layouts/'. config('twig.layout') . config('twig.extension'), $data);
+
+    return $this->parseComponents($html, $data);
+  }
+
+  /**
+   * Parse components.
+   *
+   * @param string $html HTML.
+   * @param array $data Data.
+   * 
+   * @return string Parsed HTML.
+   */
+  private function parseComponents($html, $data)
+  {
+    $doc = new \DOMDocument();
+    $doc->loadHTML($html);
+
+    $xpath = new \DOMXpath($doc);
+    $nodeList = $xpath->query('//*[@data-component]');
+
+    foreach ($nodeList as $node) {
+      if(!empty($node->getAttribute('data-component'))) {
+        $componentName = $node->getAttribute('data-component');
+        $componentRenderedString = $this->twig->render('@components/'. $componentName . '/template' . config('twig.extension'), $data);
+        $componentNode = $this->createElementFromHTML($doc, $componentRenderedString);
+
+        $node->parentNode->replaceChild($componentNode, $node);
+      }
+    }
+
+    return $doc->saveHTML();
+  }
+
+  /**
+   * Create DOMElement from HTML string.
+   *
+   * @param \DOMDocument $doc Document.
+   * @param string $html HTML to convert.
+   * 
+   * @return \DOMNode Converted DOMNode.
+   */
+  private function createElementFromHTML($doc, $html)
+  {
+    $d = new \DOMDocument();
+    $d->loadHTML($html);
+
+    return $doc->importNode($d->documentElement->firstChild->firstChild, true);
   }
 
   /**
