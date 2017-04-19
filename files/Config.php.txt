@@ -27,7 +27,6 @@ class Config extends AbstractConfig
 
   /**
    * Default configuration.
-   * @todo Uncomment twig 'components' path.
    *
    * @return array Default configuration.
    */
@@ -53,7 +52,7 @@ class Config extends AbstractConfig
           'views' => base_path('views'),
           'layouts' => base_path('views/layouts'),
           'pages' => base_path('views/pages'),
-          // 'components' => base_path('views/components')
+          'components' => base_path('views/components')
         ],
         'extensions' => [
           'manifest' => new ManifestExtension(),
