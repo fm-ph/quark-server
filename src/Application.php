@@ -247,33 +247,44 @@ class Application
     $data = array_merge_deep($data, config('twig.extraData'));
     $html = $this->twig->render('@layouts/'. config('twig.layout') . config('twig.extension'), $data);
 
-    return $this->parseComponents($html, $data);
-  }
-
-  /**
-   * Parse components.
-   *
-   * @param string $html HTML.
-   * @param array $data Data.
-   * 
-   * @return string Parsed HTML.
-   */
-  private function parseComponents($html, $data)
-  {
     $doc = new \DOMDocument();
     $doc->loadHTML($html);
 
+    return $this->parseComponentsRecursive($doc, $data, true);
+  }
+
+  /**
+   * Parse components recursively.
+   *
+   * @param \DOMDocument $doc DOMDocument.
+   * @param array $data Data.
+   * @param bool $first First parse.
+   * 
+   * @return string Parsed HTML.
+   */
+  private function parseComponentsRecursive($doc, $data, $first = false)
+  {
     $xpath = new \DOMXpath($doc);
     $nodeList = $xpath->query('//*[@data-component]');
 
-    foreach ($nodeList as $node) {
-      if(!empty($node->getAttribute('data-component'))) {
-        $componentName = $node->getAttribute('data-component');
-        $componentRenderedString = $this->twig->render('@components/'. $componentName . '/template' . config('twig.extension'), $data);
-        $componentNode = $this->createElementFromHTML($doc, $componentRenderedString);
+    $count = $nodeList->length;
 
-        $node->parentNode->replaceChild($componentNode, $node);
+    if($count > 0) {
+      foreach ($nodeList as $node) {
+        if(!empty($node->getAttribute('data-component'))) {
+          $componentName = $node->getAttribute('data-component');
+          $componentRenderedString = $this->twig->render('@components/'. $componentName . '/template' . config('twig.extension'), $data);
+
+          $element = $this->createElementFromString($doc, $componentRenderedString);
+
+          $element->removeAttribute('data-component');
+          $element->setAttribute('data-prerendered', $componentName);
+
+          $node->parentNode->replaceChild($element, $node);
+        }
       }
+
+      $this->parseComponentsRecursive($doc, $data, false);
     }
 
     return $doc->saveHTML();
@@ -287,7 +298,7 @@ class Application
    * 
    * @return \DOMNode Converted DOMNode.
    */
-  private function createElementFromHTML($doc, $html)
+  private function createElementFromString($doc, $html)
   {
     $d = new \DOMDocument();
     $d->loadHTML($html);
