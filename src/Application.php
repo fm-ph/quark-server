@@ -273,6 +273,16 @@ class Application
       foreach ($nodeList as $node) {
         if(!empty($node->getAttribute('data-component'))) {
           $componentName = $node->getAttribute('data-component');
+
+          $attributesBlacklist = ['data-component', 'data-prerendered', 'data-ref', 'data-el'];
+
+          // Parse all attributes and inject them in data Twig
+          foreach ($node->attributes as $attrName => $attrNode) {
+            if(!in_array($attrName, $attributesBlacklist) && starts_with($attrName, 'data-')) {
+              $data[str_replace('data-', '', $attrName)] = $attrNode->nodeValue;
+            }
+          }
+
           $componentRenderedString = $this->twig->render('@components/'. $componentName . '/template' . config('twig.extension'), $data);
 
           $element = $this->createElementFromString($doc, $componentRenderedString);
@@ -280,6 +290,7 @@ class Application
           $element->removeAttribute('data-component');
           $element->setAttribute('data-prerendered', $componentName);
 
+          // Proxy all 'data-' except 'data-component'
           foreach ($node->attributes as $attrName => $attrNode) {
             if($attrName !== 'data-component' && starts_with($attrName, 'data-')) {
               $element->setAttribute($attrName, $attrNode->nodeValue);
