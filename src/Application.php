@@ -230,7 +230,9 @@ class Application
       'hash' => $this->hash,
       'route' => [
         'name' => $currentRoute->getName(),
-        'parameters' => $currentRoute->getParameters()
+        'parameters' => $currentRoute->getParameters(),
+        'isFirstRoute' => true,
+        'lastRoute' => null
       ],
       'locale' => [
         'code' => $this->locale,
