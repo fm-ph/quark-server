@@ -8,7 +8,7 @@ namespace Quark;
 
 use Noodlehaus\AbstractConfig;
 
-use Quark\Twig\Extensions\ManifestExtension;
+use Quark\Twig\Extensions\QuarkExtension;
 
 /**
  * Config class.
@@ -55,7 +55,7 @@ class Config extends AbstractConfig
           'components' => base_path('views/components')
         ],
         'extensions' => [
-          'manifest' => new ManifestExtension(),
+          'quark' => new QuarkExtension(),
           'html_compress' => new \nochso\HtmlCompressTwig\Extension()
         ],
         'filters' => [],
