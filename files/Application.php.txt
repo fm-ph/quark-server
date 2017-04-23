@@ -230,7 +230,9 @@ class Application
       'hash' => $this->hash,
       'route' => [
         'name' => $currentRoute->getName(),
-        'parameters' => $currentRoute->getParameters()
+        'parameters' => $currentRoute->getParameters(),
+        'isFirstRoute' => true,
+        'lastRoute' => null
       ],
       'locale' => [
         'code' => $this->locale,
@@ -248,7 +250,7 @@ class Application
     $html = $this->twig->render('@layouts/'. config('twig.layout') . config('twig.extension'), $data);
 
     $doc = new \DOMDocument();
-    $doc->loadHTML($html);
+    @$doc->loadHTML($html);
 
     return $this->parseComponentsRecursive($doc, $data, true);
   }
@@ -273,12 +275,29 @@ class Application
       foreach ($nodeList as $node) {
         if(!empty($node->getAttribute('data-component'))) {
           $componentName = $node->getAttribute('data-component');
+
+          $attributesBlacklist = ['data-component', 'data-prerendered', 'data-ref', 'data-el'];
+
+          // Parse all attributes and inject them in data Twig
+          foreach ($node->attributes as $attrName => $attrNode) {
+            if(!in_array($attrName, $attributesBlacklist) && starts_with($attrName, 'data-')) {
+              $data[str_replace('data-', '', $attrName)] = $attrNode->nodeValue;
+            }
+          }
+
           $componentRenderedString = $this->twig->render('@components/'. $componentName . '/template' . config('twig.extension'), $data);
 
           $element = $this->createElementFromString($doc, $componentRenderedString);
 
           $element->removeAttribute('data-component');
           $element->setAttribute('data-prerendered', $componentName);
+
+          // Proxy all 'data-' except 'data-component'
+          foreach ($node->attributes as $attrName => $attrNode) {
+            if($attrName !== 'data-component' && starts_with($attrName, 'data-')) {
+              $element->setAttribute($attrName, $attrNode->nodeValue);
+            }
+          }
 
           $node->parentNode->replaceChild($element, $node);
         }
@@ -301,7 +320,7 @@ class Application
   private function createElementFromString($doc, $html)
   {
     $d = new \DOMDocument();
-    $d->loadHTML($html);
+    @$d->loadHTML($html);
 
     return $doc->importNode($d->documentElement->firstChild->firstChild, true);
   }
