@@ -250,7 +250,7 @@ class Application
     $html = $this->twig->render('@layouts/'. config('twig.layout') . config('twig.extension'), $data);
 
     $doc = new \DOMDocument();
-    @$doc->loadHTML($html);
+    @$doc->loadHTML(mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8'));
 
     return $this->parseComponentsRecursive($doc, $data, true);
   }
@@ -306,7 +306,7 @@ class Application
       $this->parseComponentsRecursive($doc, $data, false);
     }
 
-    return $doc->saveHTML();
+    return html_entity_decode($doc->saveHTML());
   }
 
   /**
@@ -320,7 +320,7 @@ class Application
   private function createElementFromString($doc, $html)
   {
     $d = new \DOMDocument();
-    @$d->loadHTML($html);
+    @$d->loadHTML(mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8'));
 
     return $doc->importNode($d->documentElement->firstChild->firstChild, true);
   }
