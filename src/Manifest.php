@@ -27,7 +27,7 @@ final class Manifest {
     }
 
     $pathInfo = pathinfo($path);
-    $isDir = !$pathInfo['extension'];
+    $isDir = !pathinfo($path, PATHINFO_EXTENSION);
 
     // Directory or file
     if ($isDir) {
