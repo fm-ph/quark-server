@@ -1,4 +1,4 @@
-# quark-server
+# [<img src="logo.png" alt="quark-server" width="200">](https://github.com/fm-ph/quark-server)
 
 [![build status][travis-image]][travis-url]
 [![packagist version][packagist-image]][packagist-url]
