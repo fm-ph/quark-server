@@ -29,13 +29,36 @@ class UserAgentTest extends TestCase
   }
 
   /**
+   * @covers ::__construct
+   */
+  public function testUserAgentBot()
+  {
+    $userAgentBotString = 'Googlebot/2.1 (+http://www.googlebot.com/bot.html)';
+    $userAgentBot = new UserAgent($userAgentBotString);
+
+    $this->assertInstanceOf(UserAgent::class, $userAgentBot);
+
+    return $userAgentBot;
+  }
+
+  /**
    * @depends testUserAgent
    * @covers ::getBrowser
    */
   public function testBrowser(UserAgent $userAgent)
   {
     $browserInfos = $userAgent->getBrowser();
-    $this->assertArraySubset(['name' => 'chrome', 'version' => '57.0.2987.133'], $browserInfos);
+    $this->assertArraySubset(['name' => 'chrome', 'channel' => null, 'stock' => false, 'mode' => null, 'version' => '57', 'old' => false], $browserInfos);
+  }
+
+  /**
+   * @depends testUserAgent
+   * @covers ::getEngine
+   */
+  public function testEngine(UserAgent $userAgent)
+  {
+    $engineInfos = $userAgent->getEngine();
+    $this->assertArraySubset(['name' => 'blink', 'version' => null], $engineInfos);
   }
 
   /**
@@ -45,7 +68,7 @@ class UserAgentTest extends TestCase
   public function testOperatingSystem(UserAgent $userAgent)
   {
     $operatingSystemInfos = $userAgent->getOperatingSystem();
-    $this->assertArraySubset(['name' => 'os x', 'version' => '10.11.6'], $operatingSystemInfos);
+    $this->assertArraySubset(['name' => 'os x', 'version' => '10.11.6', 'nickname' => 'el capitan'], $operatingSystemInfos);
   }
 
   /**
@@ -55,26 +78,16 @@ class UserAgentTest extends TestCase
   public function testDevice(UserAgent $userAgent)
   {
     $deviceInfos = $userAgent->getDevice();
-    $this->assertArraySubset(
-      [
-        'name' => 'macintosh',
-        'isDesktop' => true,
-        'isTablet' => false,
-        'isPhone' => false,
-        'isMobile' => false,
-        'isBot' => false
-      ],
-      $deviceInfos
-    );
+    $this->assertArraySubset(['type' => 'desktop', 'subtype' => null, 'identified' => true, 'manufacturer' => 'apple', 'model' => 'macintosh'], $deviceInfos);
   }
 
   /**
-   * @depends testUserAgent
+   * @depends testUserAgentBot
    * @covers ::getBot
    */
   public function testBot(UserAgent $userAgent)
   {
-    $botInfos = $userAgent->getBot();
-    $this->assertArraySubset(['name' => false], $botInfos);
+    $bot = $userAgent->getBot();
+    $this->assertTrue($bot);
   }
 }

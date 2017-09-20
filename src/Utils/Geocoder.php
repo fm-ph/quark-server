@@ -7,10 +7,10 @@
 namespace Quark\Utils;
 
 use Geocoder\ProviderAggregator;
-use Geocoder\Provider\Chain;
-use Geocoder\Provider\GeoPlugin;
-use Geocoder\Provider\FreeGeoIp;
-use Geocoder\Provider\HostIp;
+use Geocoder\Provider\Chain\Chain;
+use Geocoder\Provider\GeoPlugin\GeoPlugin;
+use Geocoder\Provider\FreeGeoIp\FreeGeoIp;
+use Geocoder\Provider\HostIp\HostIp;
 
 use Http\Adapter\Guzzle6\Client as HTTPClient;
 

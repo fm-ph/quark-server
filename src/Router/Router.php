@@ -85,7 +85,7 @@ class Router
     if(!is_null($match->getRedirect())) {
       redirect($match->getRedirect());
     }
-
+    
     return $match;
   }
 
@@ -144,10 +144,10 @@ class Router
       if($i + 1 < count($values)) {
         $value = $values[$i + 1];
       } else {
-        $value = "";
+        $value = '';
       }
 
-      $params[$keys[$i]["name"]] = $value;
+      $params[$keys[$i]['name']] = $value;
     }
     
     return $params;
@@ -178,7 +178,8 @@ class Router
       $routeOptions = [
         'name' => isset($routeConfig['name']) ? $routeConfig['name'] : null,
         'methods' => isset($routeConfig['methods']) ? $routeConfig['methods'] : RequestMethodInterface::METHOD_GET,
-        'redirect' => isset($routeConfig['redirect']) ? $routeConfig['redirect'] : null
+        'redirect' => isset($routeConfig['redirect']) ? $routeConfig['redirect'] : null,
+        'layout' => isset($routeConfig['layout']) ? $routeConfig['layout'] : null
       ];
 
       $route = new Route($routeConfig['path'], $routeOptions);

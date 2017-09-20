@@ -41,22 +41,7 @@ class GeocoderTest extends TestCase
 
     return $geocoder;
   }
-
-  /**
-   * @expectedException \Geocoder\Exception\ChainZeroResults
-   * @expectedExceptionMessageRegExp /No provider could geocode address: (.*)/
-   * @covers ::__construct
-   */
-  public function testGeocoderBad()
-  {
-    $geocoder = new Geocoder(self::$badIP);
-    $this->assertInstanceOf(Geocoder::class, $geocoder);
-
-    debug($geocoder->getGeocode());
-
-    return $geocoder;
-  }
-
+  
   /**
    * @depends testGeocoderLAN
    * @covers ::getGeocode

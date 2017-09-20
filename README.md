@@ -10,9 +10,9 @@ Server part of `quark` framework handling mainly the __routing__ and __templatin
 ## Features
 
 - __Routing__ : Methods, regex parameters, redirect, locale.
-- __Templating__ : Twig (cache, customs extensions, filters, globals...).
+- __Templating__ : Twig (layouts, cache, customs extensions, filters, globals...).
 - __Locale__ : IP address detection (Geocoder with providers chain), fallback to prefered browser locale.
-- __User agent__ : Browser, operating system, device, bot.
+- __User agent__ : Browser, engine, operating system, device, bot and old browser detection.
 - __Manifest__ : Assets hash, environment.
 - __Configuration__ : Supports PHP, INI, XML, JSON, and YAML file formats.
 - __Others__ : Error handler, function helpers.
@@ -79,9 +79,15 @@ $app->init($config);
 
 All configuration properties that can be passed to `init()` method on an `Application` instance.
 
+### Old browser
+
+| Property              | Type      | Description                                                    | Default                          |
+| --------------------- | --------- | -------------------------------------------------------------- | -------------------------------- |
+| old_browser           | `array`   | List of old browsers.                                          | See [Config.php](src/Config.php) |
+
 ### Locale
 
-| Property              | Type      | Description                                                    | Default |
+| Property              | Type      | Description                                                    | Default     |
 | --------------------- | --------- | -------------------------------------------------------------- | ----------- |
 | locale.code           | `string`  | Locale code fallback.                                          | `en`        |
 | locale.country        | `string`  | Locale country fallback.                                       |             |
@@ -97,21 +103,23 @@ All configuration properties that can be passed to `init()` method on an `Applic
 
 ### Twig
 
-| Property              | Type      | Description                                                                       | Default            |
-| --------------------- | --------- | --------------------------------------------------------------------------------- | ------------------ |
-| twig.layout           | `string`  | Twig default layout name to be rendered.                                          | `default`          |
-| twig.extension        | `string`  | Twig template file extension.                                                     | `.twig`            |
-| twig.cache            | `string`  | Twig cache path.                                                                  | `cache`            |
-| twig.extraData        | `any`     | Twig extra data merged with template data.                                        | `[]`               |
-| twig.paths.views      | `string`  | Views folder path.                                                                | `views`            |
-| twig.paths.layouts    | `string`  | Layouts folder path.                                                              | `views/layouts`    |
-| twig.paths.pages      | `string`  | Pages folder path.                                                                | `views/pages`      |
-| twig.paths.components | `string`  | Components folder path.                                                           | `views/components` |
-| twig.extensions       | `array`   | Twig extensions (manifest and html compress extensions are activated by default). | `[]`               |
-| twig.filters          | `array`   | Twig filters.                                                                     | `[]`               |
-| twig.globals          | `array`   | Twig globals.                                                                     | `[]`               |
-| twig.functions        | `array`   | Twig functions                                                                    | `[]`               |
-| twig.tests            | `array`   | Twig tests.                                                                       | `[]`               |
+| Property                 | Type      | Description                                                                       | Default            |
+| ------------------------ | --------- | --------------------------------------------------------------------------------- | ------------------ |
+| twig.layouts             | `array`   | Twig layouts name.                                                                | See below          |
+| twig.layouts.default     | `string`  | Twig default layout name to be rendered.                                          | `default`          |
+| twig.layouts.old_browser | `string`  | Twig old browser layout name.                                                     | `old`              |
+| twig.extension           | `string`  | Twig template file extension.                                                     | `.twig`            |
+| twig.cache               | `string`  | Twig cache path.                                                                  | `cache`            |
+| twig.extraData           | `any`     | Twig extra data merged with template data.                                        | `[]`               |
+| twig.paths.views         | `string`  | Views folder path.                                                                | `views`            |
+| twig.paths.layouts       | `string`  | Layouts folder path.                                                              | `views/layouts`    |
+| twig.paths.pages         | `string`  | Pages folder path.                                                                | `views/pages`      |
+| twig.paths.components    | `string`  | Components folder path.                                                           | `views/components` |
+| twig.extensions          | `array`   | Twig extensions (manifest and html compress extensions are activated by default). | `[]`               |
+| twig.filters             | `array`   | Twig filters.                                                                     | `[]`               |
+| twig.globals             | `array`   | Twig globals.                                                                     | `[]`               |
+| twig.functions           | `array`   | Twig functions                                                                    | `[]`               |
+| twig.tests               | `array`   | Twig tests.                                                                       | `[]`               |
 
 ## API
 

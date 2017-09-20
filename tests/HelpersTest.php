@@ -35,7 +35,7 @@ class HelpersTest extends TestCase
    */
   public function testConfig()
   {
-    $this->assertEquals('default', config('twig.layout'));
+    $this->assertEquals('default', config('twig.layouts.default'));
     $this->assertEquals('bar', config('foo', 'bar'));
   }
 

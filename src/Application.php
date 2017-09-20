@@ -241,13 +241,14 @@ class Application
       ],
       'l10n' => $this->l10n,
       'browser' => $this->userAgent->getBrowser(),
+      'engine' => $this->userAgent->getEngine(),
       'operatingSystem' => $this->userAgent->getOperatingSystem(),
       'device' => $this->userAgent->getDevice(),
       'bot' => $this->userAgent->getBot()
     ];
 
     $data = array_merge_deep($data, config('twig.extraData'));
-    $html = $this->twig->render('@layouts/'. config('twig.layout') . config('twig.extension'), $data);
+    $html = $this->twig->render('@layouts/'. $this->getLayoutName($currentRoute) . config('twig.extension'), $data);
 
     $doc = new \DOMDocument();
     @$doc->loadHTML(mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8'));
@@ -323,6 +324,26 @@ class Application
     @$d->loadHTML(mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8'));
 
     return $doc->importNode($d->documentElement->firstChild->firstChild, true);
+  }
+
+  /**
+   * Get twig layout name.
+   *
+   * @param \Quark\Router\Route $currentRoute Current route.
+   * 
+   * @return string Twig layout name.
+   */
+  private function getLayoutName($currentRoute)
+  {
+    $name = config('twig.layouts.default');
+
+    if($this->userAgent->isOldBrowser()) {
+      $name = config('twig.layouts.old_browser');
+    } else if (!is_null($currentRoute->getLayout())) {
+      $name = $currentRoute->getLayout();
+    }
+
+    return $name;
   }
 
   /**

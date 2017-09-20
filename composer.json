@@ -30,15 +30,19 @@
     "php": "^7.0",
     "fig/http-message-util": "^1.1",
     "filp/whoops": "^2.1",
+    "geocoder-php/chain-provider": "^4.0",
+    "geocoder-php/free-geoip-provider": "^4.0",
+    "geocoder-php/geo-plugin-provider": "^4.0",
+    "geocoder-php/host-ip-provider": "^4.0",
     "gpolguere/path-to-regexp-php": "dev-master",
     "hassankhan/config": "^0.10.0",
-    "jenssegers/agent": "^2.5",
     "nochso/html-compress-twig": "^2.0",
     "php-http/guzzle6-adapter": "^1.1",
     "php-http/message": "^1.5",
     "symfony/yaml": "^3.2",
-    "twig/twig": "^2.1",
-    "willdurand/geocoder": "4.0.x-dev"
+    "twig/twig": "^2.4",
+    "whichbrowser/parser": "^2.0",
+    "willdurand/geocoder": "4.1.0"
   },
   "config": {
     "sort-packages": true

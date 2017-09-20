@@ -39,6 +39,16 @@ class Route
   private $name;
 
   /**
+   * @var string Route redirect.
+   */
+  private $redirect;
+
+  /**
+   * @var string Route layout.
+   */
+  private $layout;
+
+  /**
    * @var array Route parameters.
    */
   private $parameters = [];
@@ -56,6 +66,7 @@ class Route
     $this->methods = isset($options['methods']) ? (array) $options['methods'] : [];
     $this->name = isset($options['name']) ? $options['name'] : null;
     $this->redirect = isset($options['redirect']) ? $options['redirect'] : null;
+    $this->layout = isset($options['layout']) ? $options['layout'] : null;
   }
 
   /**
@@ -142,6 +153,26 @@ class Route
   public function setRedirect(string $redirect)
   {
     $this->redirect = $redirect;
+  }
+
+  /**
+   * Get route layout.
+   *
+   * @return string Route layout.
+   */
+  public function getLayout()
+  {
+    return $this->layout;
+  }
+
+  /**
+   * Set route layout.
+   *
+   * @param string $layout Route layout.
+   */
+  public function setLayout(string $layout)
+  {
+    $this->layout = $layout;
   }
 
   /**
