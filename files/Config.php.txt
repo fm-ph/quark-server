@@ -33,6 +33,13 @@ class Config extends AbstractConfig
   protected function getDefaults()
   {
     return [
+      'old_browser' => [
+        [
+          'name' => 'Internet Explorer',
+          'comparison' => '<=',
+          'version' => '10'
+        ]
+      ],
       'locale' => [
         'code' => 'en',
         'country' => '',
@@ -44,7 +51,10 @@ class Config extends AbstractConfig
         'manifest' => base_path('manifest.json')
       ],
       'twig' => [
-        'layout' => 'default',
+        'layouts' => [
+          'default' => 'default',
+          'old_browser' => 'old'
+        ],
         'extension' => '.twig',
         'cache' => base_path('cache'),
         'extraData' => [],
