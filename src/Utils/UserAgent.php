@@ -50,7 +50,7 @@ final class UserAgent
   public function getBrowser()
   {
     return [
-      'name' => $this->parseProperty($this->parser->browser->name),
+      'name' => $this->parseProperty($this->parser->browser->getName()),
       'channel' => $this->parseProperty($this->parser->browser->channel),
       'stock' => $this->parseProperty($this->parser->browser->stock),
       'mode' => $this->parseProperty($this->parser->browser->mode),
@@ -67,7 +67,7 @@ final class UserAgent
   public function getEngine()
   {
     return [
-      'name' => $this->parseProperty($this->parser->engine->name),
+      'name' => $this->parseProperty($this->parser->engine->getName()),
       'version' => $this->parseProperty($this->parser->engine->getVersion())
     ];
   }
@@ -80,7 +80,7 @@ final class UserAgent
   public function getOperatingSystem()
   {
     return [
-      'name' => $this->parseProperty($this->parser->os->name),
+      'name' => $this->parseProperty($this->parser->os->getName()),
       'version' => $this->parseProperty($this->parser->os->version->value),
       'nickname' => $this->parseProperty($this->parser->os->version->nickname)
     ];
