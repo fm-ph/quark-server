@@ -81,8 +81,7 @@ final class UserAgent
   {
     return [
       'name' => $this->parseProperty($this->parser->os->getName()),
-      'version' => $this->parseProperty($this->parser->os->version->value),
-      'nickname' => $this->parseProperty($this->parser->os->version->nickname)
+      'version' => $this->parseProperty($this->parser->os->getVersion())
     ];
   }
 
