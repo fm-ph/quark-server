@@ -68,7 +68,7 @@ class UserAgentTest extends TestCase
   public function testOperatingSystem(UserAgent $userAgent)
   {
     $operatingSystemInfos = $userAgent->getOperatingSystem();
-    $this->assertArraySubset(['name' => 'os x', 'version' => '10.11.6', 'nickname' => 'el capitan'], $operatingSystemInfos);
+    $this->assertArraySubset(['name' => 'os x', 'version' => 'el capitan 10.11'], $operatingSystemInfos);
   }
 
   /**
