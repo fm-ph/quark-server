@@ -113,12 +113,13 @@ class Application
    */
   public function init(array $config = [])
   {
+    $this->createConfig($config);
+    $this->createManifest();
+
     if(env() === 'development') {
       $this->createWhoops();
     }
-    
-    $this->createConfig($config);
-    $this->createManifest();
+
     $this->createTwig();
     $this->createLocale();
     $this->createL10n();
